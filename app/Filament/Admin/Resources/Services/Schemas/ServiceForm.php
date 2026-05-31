@@ -14,20 +14,27 @@ class ServiceForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nombre')
                     ->required(),
                 TextInput::make('slug')
+                    ->label('Slug')
                     ->required(),
                 Textarea::make('short_description')
+                    ->label('Descripción corta')
                     ->columnSpanFull(),
                 Textarea::make('description')
+                    ->label('Descripción')
                     ->columnSpanFull(),
                 TextInput::make('price')
+                    ->label('Precio')
                     ->numeric()
                     ->prefix('$'),
                 TextInput::make('duration_minutes')
+                    ->label('Duración (minutos)')
                     ->numeric(),
                 Toggle::make('is_active')
-                    ->required(),
+                    ->label('Activo')
+                    ->default(true),
             ]);
     }
 }

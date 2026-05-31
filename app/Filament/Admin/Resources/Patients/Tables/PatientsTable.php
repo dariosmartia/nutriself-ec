@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Services\Tables;
+namespace App\Filament\Admin\Resources\Patients\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,26 +9,41 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ServicesTable
+class PatientsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('first_name')
+                    ->searchable(),
+
+
+                TextColumn::make('first_name')
                     ->label('Nombre')
                     ->searchable(),
-                TextColumn::make('slug')
-                    ->label('Slug')
+                TextColumn::make('last_name')
+                    ->label('Apellido')
                     ->searchable(),
-                TextColumn::make('price')
-                    ->label('Precio')
-                    ->money()
+                TextColumn::make('email')
+                    ->label('Correo electrónico')
+                    ->searchable(),
+                TextColumn::make('phone')
+                    ->label('Teléfono')
+                    ->searchable(),
+                TextColumn::make('birth_date')
+                    ->label('Fecha de nacimiento')
+                    ->date()
                     ->sortable(),
-                TextColumn::make('duration_minutes')
-                    ->label('Duración (min)')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('gender')
+                    ->label('Género')
+                    ->formatStateUsing(fn (?string $state): string => match ($state) {
+                        'male' => 'Masculino',
+                        'female' => 'Femenino',
+                        'other' => 'Prefiero no indicar',
+                        default => '-',
+                    })
+                    ->searchable(),
                 IconColumn::make('is_active')
                     ->label('Activo')
                     ->boolean(),
