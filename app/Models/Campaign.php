@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Prospect;
 use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
-   protected $fillable = [
+    protected $fillable = [
         'name',
         'type',
         'description',
@@ -16,4 +17,9 @@ class Campaign extends Model
         'main_message',
         'objective',
     ];
+
+    public function prospects()
+    {
+        return $this->hasMany(Prospect::class);
+    }
 }

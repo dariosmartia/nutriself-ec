@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Prospects\Schemas;
 
+use App\Models\Campaign;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -30,6 +31,12 @@ class ProspectForm
         TextInput::make('source')
             ->label('Origen')
             ->required(),
+
+        Select::make('campaign_id')
+            ->label('Campaña')
+            ->relationship('campaign', 'name')
+            ->searchable()
+            ->preload(),
 
         TextInput::make('main_goal')
             ->label('Objetivo principal'),
